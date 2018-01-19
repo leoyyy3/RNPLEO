@@ -1,21 +1,45 @@
 import React, { Component } from 'react';
+import {RaisedButton,AppBar,Paper,Menu,Divider,MenuItem} from 'material-ui';
 import logo from './logo.svg';
 import './App.css';
 
+import Home from "./containers/Home"
+
 class App extends Component {
+    handleClick(){
+        console.log('handle')
+    }
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+          <AppBar
+              title={<span style={styles.title}>RNPLEO</span>}
+              onTitleClick={this.handleClick}
+            />
+        <Home />
       </div>
     );
   }
+}
+
+const styles = {
+    title:{
+        color:'#fff'
+    },
+    paper:{
+        position:"fixed",
+        top:"64px",
+        left:"0",
+        bottom:"0"
+    },
+    item:{
+        fontSize:"14px",
+        height:"28px",
+        lineHeight:"28px"
+    },
+    menu:{
+        padding:"0 10px"
+    }
 }
 
 export default App;

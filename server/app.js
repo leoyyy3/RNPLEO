@@ -15,7 +15,7 @@ const app = new	Koa()
 
 app.use(serve('.'));
 app.use(serve(__dirname + '/resource/images'));
-app.use(serve(__dirname + '/build'));
+app.use(serve(__dirname + '/static/'));
 app.use(serve(__dirname + '/images'));
 
 app.use(bodyParser())
@@ -115,6 +115,3 @@ var Pet = seque.define('tb1s',{
     //     console.log(JSON.stringify(p));
     // }
 })();
-
-
-
