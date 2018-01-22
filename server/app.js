@@ -4,6 +4,9 @@ const bodyParser = require('koa-bodyparser')
 const fs = require('fs')
 const serve = require("koa-static");
 
+require('babel-register');
+require('babel-polyfill');
+
 const User = require('./models/User')
 
 const Sequelize = require('sequelize');

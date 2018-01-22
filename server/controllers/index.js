@@ -1,11 +1,26 @@
 const fs = require('fs')
+import React from 'react'; //add
+import ReactDOMServer from 'react-dom/server'; //add
+import Home from '../../src/index'; //add
 const User = require('../models/User')
 
 var index = async (ctx,next)=>{
 	var name = ctx.params.name;
+	const html = ReactDOMServer.renderToString(<Home />);
 	ctx.type = "html"
-	ctx.cookies.set('view', "123123123");
+	// ctx.cookies.set('view', "123123123");
 	ctx.response.body = fs.createReadStream('build/index.html')
+
+	fs.readFile('build/index.html', 'utf8', function (err, data) {
+	    if (err) throw err;
+		console.log('---',html)
+	    // 把渲染后的 React HTML 插入到 div 中
+	    const document = data.replace(/<div id="root"><\/div>/, `<div id="root">${html}</div>`);
+
+	    // 把响应传回给客户端
+	    // res.send(document);
+		ctx.response.body = document
+	  });
 }
 
 var login = async (ctx,next)=>{
@@ -32,7 +47,7 @@ var login = async (ctx,next)=>{
             username: name
         }
     });
-    
+
     result = JSON.stringify(users)
 
     if(!result.length){
@@ -47,7 +62,7 @@ var login = async (ctx,next)=>{
     	msg:msg,
     	result:[],
     	status:status
-    }	
+    }
 }
 
 

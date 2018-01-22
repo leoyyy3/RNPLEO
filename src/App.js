@@ -7,7 +7,7 @@ import Home from "./containers/Home"
 
 class App extends Component {
     handleClick(){
-        console.log('handle')
+        console.log('handles')
     }
   render() {
     return (
